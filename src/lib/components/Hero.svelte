@@ -4,7 +4,7 @@
 
 <section class="px-6 py-24 lg:px-6">
 	<div class="max-w-2xl mx-auto text-center">
-		<h1 class="text-7xl">
+		<h1 class="text-7xl text-riffs-text">
 			{title}
 		</h1>
 	</div>
