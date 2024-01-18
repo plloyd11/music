@@ -1,66 +1,44 @@
 <script>
 	import Hero from '$lib/components/Hero.svelte';
-	export let data;
-
-	let albums = data.albums.records;
-	let filterActive = false;
-
-	// filter by abc order of Band
-	albums.sort((a, b) => {
-		if (a.fields.Band < b.fields.Band) {
-			return -1;
-		}
-		if (a.fields.Band > b.fields.Band) {
-			return 1;
-		}
-		return 0;
-	});
 </script>
 
-<main class="bg-riffs-bg">
-	<Hero title="Riffs of 2023" />
-	<section class="px-4 mx-auto lg:px-6 max-w-7xl">
-		<button
-			class="relative block px-4 py-2 mx-auto font-medium group"
-			on:click={() => (filterActive = !filterActive)}
+<main class="h-screen bg-riffs-bg">
+	<Hero title="Pete's Riff Database" />
+	<h2 class="text-4xl text-center text-gray-100">⚔️ Pick a year, coward! ⚔️</h2>
+	<div class="px-6 mx-auto mt-32 max-w-7xl sm:mt-40 lg:px-8">
+		<div
+			class="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-16 auto-rows-fr sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
 		>
-			<span
-				class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-riffs-text group-hover:-translate-x-0 group-hover:-translate-y-0"
-			/>
-			<span
-				class="absolute inset-0 w-full h-full border-2 border-black bg-riffs-accent group-hover:bg-riffs-text"
-			/>
-			<span class="relative text-xl text-black group-hover:text-white"
-				>{filterActive ? 'Gimme ALL the riffs' : "Hit me with the fuckin' best shit 🔥"}</span
+			<article
+				class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden bg-riffs-card isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80"
 			>
-		</button>
-		<div class="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3">
-			{#if albums}
-				{#each albums.filter((album) => album.fields && album.fields.Artwork && album.fields.Artwork.length > 0 && album.fields['Album Title'] && album.fields.Band && (!filterActive || (filterActive && album.fields.Rating >= 9))) as album}
-					<div class="relative flex flex-col gap-2 card card-hover bg-riffs-card">
-						<a href={album.fields['Music Link']} target="_blank" rel="">
-							<img
-								src={album.fields.Artwork.length > 0 ? album.fields.Artwork[0].url : 'default.jpg'}
-								alt={album.fields['Album Title']}
-								class="rounded-tl-container-token rounded-tr-container-token"
-							/>
-						</a>
-						<div class="p-5 space-y-6">
-							{#if album.fields.Rating}
-								<span class="text-lg text-riffs-accent">⚔️ {album.fields.Rating} out of 10 ⚔️</span>
-							{:else}
-								<span class="italic text-riffs-accent">Not yet rated</span>
-							{/if}
-							<div>
-								<span class="block text-2xl font-semibold text-riffs-text"
-									>{album.fields['Album Title']}</span
-								>
-								<span class="text-lg font-light text-riffs-text/70">{album.fields.Band}</span>
-							</div>
-						</div>
-					</div>
-				{/each}
-			{/if}
+				<img src="/2023.png" alt="" class="absolute inset-0 object-cover w-full h-full -z-10" />
+				<div class="absolute inset-0 -z-10 bg-gradient-to-t from-riffs-card via-riffs-card/40" />
+				<div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-riffs-card/10" />
+				<h3 class="mt-3 text-2xl font-semibold leading-6 text-white">
+					<a href="/2023">
+						<span class="absolute inset-0" />
+						2023
+					</a>
+				</h3>
+			</article>
+			<article
+				class="relative flex flex-col justify-end px-8 pb-8 overflow-hidden bg-riffs-card isolate rounded-2xl pt-80 sm:pt-48 lg:pt-80"
+			>
+				<img
+					src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"
+					alt=""
+					class="absolute inset-0 object-cover w-full h-full -z-10"
+				/>
+				<div class="absolute inset-0 -z-10 bg-gradient-to-t from-riffs-card via-riffs-card/40" />
+				<div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-riffs-card/10" />
+				<h3 class="mt-3 text-2xl font-semibold leading-6 text-white">
+					<a href="/2024">
+						<span class="absolute inset-0" />
+						2024
+					</a>
+				</h3>
+			</article>
 		</div>
-	</section>
+	</div>
 </main>
